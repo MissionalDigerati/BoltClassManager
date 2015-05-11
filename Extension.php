@@ -312,7 +312,7 @@ class Extension extends \Bolt\BaseExtension
         // Insert just before </head>
         preg_match("~^([ \t]*)</head~mi", $html, $matches);
         $replacement = sprintf("%s\t%s\n%s", $matches[1], $assets, $matches[0]);
-        return str_replace_first($matches[0], $replacement, $html);
+        // return str_replace_first($matches[0], $replacement, $html);
     }
 
     /**
