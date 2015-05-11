@@ -1,0 +1,82 @@
+{% include '_header.twig' %}
+
+<div class="row-fluid">
+    <h1><strong>{{ __('Class Manager') }}</strong></h1>
+    {% if delete_success == 'true' %}
+        <div class="alert alert-success">
+            The student has been successfully removed from the class.
+        </div>
+    {% endif %}
+    <table class='dashboardlisting' style="width: 100%;">
+        <thead>
+            <tr>
+                <th data-sort="datetime" class="sortable sort_on_load">{{ __('Date') }}</th>
+                <th data-sort="string" class="sortable">{{ __('Title') }}</th>
+                <th data-sort="string" class="sortable">{{ __('Training') }}</th>
+                <th data-sort="string" class="sortable">{{ __('Curriculum') }}</th>
+                <th>{{ __('Access Key') }}</th>
+                <th>{{ __('Actions') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if classes is defined and classes is not empty %}
+
+                {% for class in classes %}
+                    {% set type_of_training = class.related('curriculum') %}
+
+                    <tr>
+                        <td>
+                            {{ class.date_of_class|date("M d, Y @ g:i a") }}
+                        </td>
+                        <td>
+                            {{ class.title }}
+                        </td>
+                        <td>
+                            {% set training_type_slug = '' %}
+                            {% for training_type in type_of_training[0].taxonomy.training_types %}
+                                {% if training_type|lower == 'faith & tech' %}
+                                    {% set training_type_slug = 'faith_and_tech' %}
+                                {% else %}
+                                    {% set training_type_slug = 'digerati_101' %}
+                                {% endif %}
+                                {{training_type}}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {{ type_of_training[0].title }}
+                        </td>
+                        <td>
+                            {% if class.public == 1 %}
+                                Public
+                            {% else %}
+                                {{ class.access_key }}
+                            {% endif %}
+                        </td>
+                        <td class='actions'>
+                            <div class="btn-group">
+                                <a class="btn btn-mini" href="{{roster_path}}{{training_type_slug}}/{{ class.id }}">
+                                    <i class="icon-user"></i> {{ __('Roster') }}
+                                </a>icon-pencil
+                                <a class="btn btn-mini" href="{{sign_in_path}}{{training_type_slug}}/{{ class.id }}">
+                                    <i class="icon-pencil"></i> {{ __('Sign In Sheet') }}
+                                </a>
+                                <a class="btn btn-mini" href="/upcoming-class/{{ class.slug }}" target="_blank">
+                                    <i class="icon-file"></i> {{ __('Class Page') }}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                {% endfor %}
+
+            {% else %}
+
+                <tr>
+                    <td colspan="3">Sorry, no classes currently.</td>
+                </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% include '_footer.twig' %}

@@ -1,0 +1,97 @@
+{% include '_header.twig' %}
+
+<div class="row-fluid">
+    {% if is_sign_in %}
+        <h1><strong>{{ __('Sign In') }}</strong></h1>
+    {% else %}
+        <h1><strong>{{ __('Roster') }}</strong></h1>
+    {% endif %}
+    <a href="{{home_path}}" class="btn pull-right back-link" type="button">Back to Class Manager</a>
+    {% if delete_success == 'true' %}
+        <div class="alert alert-success">
+            The student has been successfully removed from the class.
+        </div>
+    {% endif %}
+    <h2>{{ class_record.title }} (<em>{{class_record.date_of_class|date("M d, ’y @ g:i a")}}</em>)</h2>
+    {% set type_of_training = class_record.related('curriculum') %}
+    <p><strong>{{ __('Training') }}</strong>:&nbsp;
+        {% for training_type in type_of_training[0].taxonomy.training_types %}
+            {{training_type}}
+        {% endfor %}
+    </p>
+    <p><strong>{{ __('Curriculum') }}</strong>:&nbsp;{{ type_of_training[0].title }}</p>
+    {% if is_sign_in %}
+        <br>
+        <p><em>{{ __('Please check your information, and make any corrections.  Then initial in the right hand box.') }}</em></p>
+    {% endif %}
+    <table class='dashboardlisting' style="width: 100%;">
+        <thead>
+            <tr>
+                <th data-sort="string" class="sortable sort_on_load">{{ __('Name') }}</th>
+                <th data-sort="string" class="sortable">{{ __('Email') }}</th>
+                {% if is_sign_in %}
+                    <th>{{ __('Initials') }}</th>
+                {% else %}
+                    <th data-sort="string" class="sortable">{{ __('Phone') }}</th>
+                    <th data-sort="string" class="sortable">{{ __('Computer Experience') }}</th>
+                    <th data-sort="string" class="sortable">{{ __('Smart Device Experience') }}</th>
+                    <th data-sort="datetime" class="sortable">{{ __('Date Registered') }}</th>
+                {% endif %}
+                <th>{{ __('Actions') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if students is defined and students is not empty %}
+
+                {% for student in students %}
+
+                    <tr>
+                        <td>{{student.name}}</td>
+                        <td>{{student.email}}</td>
+                        {% if is_sign_in %}
+                            <td></td>
+                        {% else %}
+                            <td>{{student.phone}}</td>
+                            <td>{{student.experience_computers}}</td>
+                            <td>{{student.experience_smart_phones}}</td>
+                            <td>{{student.timestamp|date("M d, Y @ g:i a")}}</td>
+                        {% endif %}
+                        <td>
+                            <form action="{{remove_student_path}}{{training_type_slug}}/{{class_id}}/remove-student/{{student.id}}?redirect={% if is_sign_in %}sign_in{% else %}roster{% endif %}" name="delete_from_class" class="delete_from_class" data-confirm="{{ __('Are you sure you want to remove this student and their spouse?') }}" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn btn-danger btn-mini">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    {% if student.spouse|lower == 'yes' %}
+                        <tr>
+                            <td>{{student.spouse_name}}</td>
+                            <td>{{student.email}}</td>
+                            {% if is_sign_in %}
+                                <td></td>
+                            {% else %}
+                                <td>{{student.phone}}</td>
+                                <td>{{student.spouse_experience_computers}}</td>
+                                <td>{{student.spouse_experience_smart_phones}}</td>
+                                <td>{{student.timestamp|date("M d, Y @ g:i a")}}</td>
+                            {% endif %}
+                            <td><em>Spouse of {{student.name}}</em></td>
+                        </tr>
+                    {% endif %}
+                    
+                {% endfor %}
+
+            {% else %}
+
+                <tr>
+                    <td colspan="{% if is_sign_in %}4{% else %}7{% endif %}">
+                        {{ __('Sorry, no students enrolled currently.') }}
+                    </td>
+                </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% include '_footer.twig' %}
