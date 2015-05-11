@@ -222,7 +222,7 @@ class Extension extends \Bolt\BaseExtension
             )
         );
 
-        return new Response($this->injectAssets($body));
+        return new Response($body);
     }
 
     /**

@@ -1,7 +1,11 @@
-{% extends "_base/_page-nav.twig" %}
+{% if is_sign_in %}
 
-{% block page_title __('Class Manager') %}
-{% block page_nav 'Settings/Extensions' %}
+{% else %}
+    {% extends "_base/_page-nav.twig" %}
+
+    {% block page_title __('Class Manager') %}
+    {% block page_nav 'Settings/Extensions' %}
+{% endif %}
 
 {% block page_main %}
     {% if is_sign_in %}
@@ -39,8 +43,8 @@
                     <th data-sort="string" class="sortable">{{ __('Computer Experience') }}</th>
                     <th data-sort="string" class="sortable">{{ __('Smart Device Experience') }}</th>
                     <th data-sort="datetime" class="sortable">{{ __('Date Registered') }}</th>
+                    <th>{{ __('Actions') }}</th>
                 {% endif %}
-                <th>{{ __('Actions') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -58,13 +62,13 @@
                             <td>{{student.experience_computers}}</td>
                             <td>{{student.experience_smart_phones}}</td>
                             <td>{{student.timestamp|date("M d, Y @ g:i a")}}</td>
+                            <td>
+                                <form action="{{remove_student_path}}{{training_type_slug}}/{{class_id}}/remove-student/{{student.id}}?redirect={% if is_sign_in %}sign_in{% else %}roster{% endif %}" name="delete_from_class" class="delete_from_class" data-confirm="{{ __('Are you sure you want to remove this student and their spouse?') }}" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn btn-danger btn-mini">Remove</button>
+                                </form>
+                            </td>
                         {% endif %}
-                        <td>
-                            <form action="{{remove_student_path}}{{training_type_slug}}/{{class_id}}/remove-student/{{student.id}}?redirect={% if is_sign_in %}sign_in{% else %}roster{% endif %}" name="delete_from_class" class="delete_from_class" data-confirm="{{ __('Are you sure you want to remove this student and their spouse?') }}" method="POST">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn btn-danger btn-mini">Remove</button>
-                            </form>
-                        </td>
                     </tr>
 
                     {% if student.spouse|lower == 'yes' %}
