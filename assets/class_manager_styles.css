@@ -1,0 +1,55 @@
+form.delete_from_class {
+    display: inline;
+}
+th.sortable {
+    color: #194770;
+}
+
+th.sortable:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+th.sortable:hover i {
+    text-decoration: none;
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+
+    div.navbar, div.navbar *
+    {
+        display: none !important;
+    }
+
+    div.sf-toolbar, div.sf-toolbar *
+    {
+        display: none !important;
+    }
+
+    footer#bolt-footer, footer#bolt-footer *
+    {
+        display: none !important;
+    }
+
+    table td:last-child, table th:last-child
+    {
+        display: none !important;
+    }
+
+    th.sortable {
+        color: #888 !important;
+    }
+
+    th i {
+        display: none !important;
+    }
+
+    a.back-link {
+        display: none !important;
+    }
+}

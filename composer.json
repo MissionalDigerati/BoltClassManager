@@ -1,0 +1,26 @@
+{
+  "name": "missionaldigerati/boltclassmanager",
+  "description": "An extension for the Bolt CMS that is designed uniquely for our website. It manages the people who sign up for our classes. It reads SimpleForms stored in the database to list visitors to our class.",
+  "type": "bolt-extension",
+  "keywords": [
+    "custom",
+    "SimpleForm data manager",
+    "management"
+  ],
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Missional Digerati",
+      "email": "johnathan@missionaldigerati.org",
+      "homepage": "http://missionaldigerati.org"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "init.php"
+    ],
+    "psr-4" : {
+      "Bolt\\Extension\\MissionalDigerati\\BoltClassManager\\" : ""
+    }
+  }
+}
