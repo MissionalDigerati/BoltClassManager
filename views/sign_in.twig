@@ -1,5 +1,3 @@
-{% block page_title __('Class Manager: Sign In') %}
-
 {% block page_main %}
     <h1><strong>{{ __('Sign In') }}</strong></h1>
     <h2>{{ class_record.title }} (<em>{{class_record.date_of_class|date("M d, ’y @ g:i a")}}</em>)</h2>
@@ -11,12 +9,12 @@
     </p>
     <p><strong>{{ __('Curriculum') }}</strong>:&nbsp;{{ type_of_training[0].title }}</p>
     <p><em>{{ __('Please check your information, and make any corrections.  Then initial in the right hand box.') }}</em></p>
-    <table style="width: 100%;" class="dashboardlisting">
+    <table style="width: 100%; border: 1px solid black;" class="dashboardlisting">
         <thead>
             <tr>
-                <th>{{ __('Name') }}</th>
-                <th>{{ __('Email') }}</th>
-                <th>{{ __('Initials') }}</th>
+                <th style="border: 1px solid black;">{{ __('Name') }}</th>
+                <th style="border: 1px solid black;">{{ __('Email') }}</th>
+                <th style="border: 1px solid black;">{{ __('Initials') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -24,16 +22,16 @@
 
                 {% for student in students %}
                     <tr>
-                        <td>{{student.name}}</td>
-                        <td>{{student.email}}</td>
-                        <td></td>
+                        <td style="border: 1px solid black;">{{student.name}}</td>
+                        <td style="border: 1px solid black;">{{student.email}}</td>
+                        <td style="border: 1px solid black;"></td>
                     </tr>
                 {% endfor %}
 
             {% else %}
 
                 <tr>
-                    <td colspan="4">
+                    <td colspan="4" style="border: 1px solid black;">
                         {{ __('Sorry, no students enrolled currently.') }}
                     </td>
                 </tr>
