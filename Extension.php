@@ -24,6 +24,7 @@
 namespace Bolt\Extension\MissionalDigerati\BoltClassManager;
 
 use Symfony\Component\HttpFoundation\Response;
+use Bolt\Translation\Translator as Trans;
 
 /**
  * BoltClassManager is an Extension for the Bolt CMS (@link http://bolt.cm)
@@ -97,7 +98,7 @@ class Extension extends \Bolt\BaseExtension
             $this->path = $this->extensionPaths['branding'] . '/extensions/class-manager';
             $this->extensionPaths['home'] = $this->path;
             $this->app->match($this->path, array($this, 'classManagerLoad'));
-            $this->addMenuOption('Manage Classes', $this->app['paths']['bolt'] . 'extensions/class-manager', "icon-group");
+            $this->addMenuOption(Trans::__('Class Manager'), $this->app['paths']['bolt'] . 'extensions/class-manager', "icon-group");
         }
         /**
          * Add the clickable links for this page
@@ -312,7 +313,7 @@ class Extension extends \Bolt\BaseExtension
         // Insert just before </head>
         preg_match("~^([ \t]*)</head~mi", $html, $matches);
         $replacement = sprintf("%s\t%s\n%s", $matches[1], $assets, $matches[0]);
-        // return str_replace_first($matches[0], $replacement, $html);
+        return $this->strReplaceFirst($matches[0], $replacement, $html);
     }
 
     /**
@@ -338,6 +339,22 @@ class Extension extends \Bolt\BaseExtension
     private function getViewTemplate($slug)
     {
         return ($slug == 'digerati_101') ? 'roster_digerati.twig' : 'roster_faith_tech.twig';
+    }
+    /**
+     * Replace the first in a string
+     * @param string $search what to search for
+     * @param string $replace what to replace
+     * @param string $subject what to replace it with
+     * @return mixed
+     *
+     */
+    private function strReplaceFirst($search, $replace, $subject)
+    {
+        $pos = strpos($subject, $search);
+        if ($pos !== false) {
+            $subject = substr_replace($subject, $replace, $pos, strlen($search));
+        }
+        return $subject;
     }
 
 }
