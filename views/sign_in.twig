@@ -1,7 +1,4 @@
-{% extends "_base/_page-nav.twig" %}
-
 {% block page_title __('Class Manager: Sign In') %}
-{% block page_nav 'Settings/Extensions' %}
 
 {% block page_main %}
     <h1><strong>{{ __('Sign In') }}</strong></h1>
@@ -17,8 +14,8 @@
     <table style="width: 100%;" class="dashboardlisting">
         <thead>
             <tr>
-                <th data-sort="string" class="sortable sort_on_load">{{ __('Name') }}</th>
-                <th data-sort="string" class="sortable">{{ __('Email') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Email') }}</th>
                 <th>{{ __('Initials') }}</th>
             </tr>
         </thead>
