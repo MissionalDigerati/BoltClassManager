@@ -216,7 +216,7 @@ class Extension extends \Bolt\BaseExtension
             )
         );
 
-        return new Response(This->injectAssets($body));
+        return new Response($this->injectAssets($body));
     }
 
     /**

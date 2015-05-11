@@ -1,3 +1,8 @@
+{% extends "_base/_page-nav.twig" %}
+
+{% block page_title __('Class Manager: Sign In') %}
+{% block page_nav 'Settings/Extensions' %}
+
 {% block page_main %}
     <h1><strong>{{ __('Sign In') }}</strong></h1>
     <h2>{{ class_record.title }} (<em>{{class_record.date_of_class|date("M d, ’y @ g:i a")}}</em>)</h2>
