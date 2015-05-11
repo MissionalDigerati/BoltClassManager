@@ -14,11 +14,11 @@
     </p>
     <p><strong>{{ __('Curriculum') }}</strong>:&nbsp;{{ type_of_training[0].title }}</p>
     <p><em>{{ __('Please check your information, and make any corrections.  Then initial in the right hand box.') }}</em></p>
-    <table style="width: 100%;">
+    <table style="width: 100%;" class="dashboardlisting">
         <thead>
             <tr>
-                <th>{{ __('Name') }}</th>
-                <th>{{ __('Email') }}</th>
+                <th data-sort="string" class="sortable sort_on_load">{{ __('Name') }}</th>
+                <th data-sort="string" class="sortable">{{ __('Email') }}</th>
                 <th>{{ __('Initials') }}</th>
             </tr>
         </thead>

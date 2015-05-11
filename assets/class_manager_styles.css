@@ -21,7 +21,8 @@ th.sortable:hover i {
         display: none !important;
     }
 
-    div.navbar, div.navbar *
+    div#navpage-wrapper, div#navpage-wrapper *,
+    div#navpage-secondary, div#navpage-secondary *
     {
         display: none !important;
     }
