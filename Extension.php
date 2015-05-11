@@ -208,13 +208,11 @@ class Extension extends \Bolt\BaseExtension
 
         $classRecord = $this->app['storage']->getContent('upcoming_classes', array('id' => $id, 'returnsingle' => true));
 
-        $body = $this->app['render']->render("@ClassManager/sign_in",
+        $body = $this->app['render']->render("@ClassManager/sign_in.twig",
             array(
                 'students'              =>  $students,
                 'class_record'          =>  $classRecord,
-                'training_type_slug'    =>  $class_slug,
-                'class_id'              =>  $id,
-                'is_sign_in'            =>  true
+                'training_type_slug'    =>  $class_slug
             )
         );
 
