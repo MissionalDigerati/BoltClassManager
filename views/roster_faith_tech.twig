@@ -1,4 +1,9 @@
-<div class="row-fluid">
+{% extends "_base/_page-nav.twig" %}
+
+{% block page_title __('Class Manager') %}
+{% block page_nav 'Settings/Extensions' %}
+
+{% block page_main %}
     {% if is_sign_in %}
         <h1><strong>{{ __('Sign In') }}</strong></h1>
     {% else %}
@@ -91,4 +96,4 @@
             {% endif %}
         </tbody>
     </table>
-</div>
+{% endblock %}

@@ -1,5 +1,9 @@
-<div class="row-fluid">
-    <h1><strong>{{ __('Class Manager') }}</strong></h1>
+{% extends "_base/_page-nav.twig" %}
+
+{% block page_title __('Class Manager') %}
+{% block page_nav 'Settings/Extensions' %}
+
+{% block page_main %}
     {% if delete_success == 'true' %}
         <div class="alert alert-success">
             The student has been successfully removed from the class.
@@ -76,4 +80,4 @@
             {% endif %}
         </tbody>
     </table>
-</div>
+{% endblock %}
