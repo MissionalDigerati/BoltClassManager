@@ -196,7 +196,7 @@ class Extension extends \Bolt\BaseExtension
     public function classManagerLoadSignInSheet($class_slug = '', $id = null)
     {
         $id = (int) $id;
-        $view = $this->getViewTemplate($class_slug);
+        $view = $this->getViewTemplate('sign_in');
         $table = $this->getClassTable($class_slug);
         $deleteSuccess = $this->app['request']->get('delete_success');
         
@@ -215,10 +215,7 @@ class Extension extends \Bolt\BaseExtension
                 'class_record'          =>  $classRecord,
                 'training_type_slug'    =>  $class_slug,
                 'class_id'              =>  $id,
-                'is_sign_in'            =>  true,
-                'delete_success'        =>  $deleteSuccess,
-                'remove_student_path'   =>  $this->extensionPaths['remove_student'],
-                'home_path'             =>  $this->extensionPaths['home']
+                'is_sign_in'            =>  true
             )
         );
 
