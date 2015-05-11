@@ -23,6 +23,8 @@
 
 namespace Bolt\Extension\MissionalDigerati\BoltClassManager;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * BoltClassManager is an Extension for the Bolt CMS (@link http://bolt.cm)
  *
@@ -95,7 +97,7 @@ class Extension extends \Bolt\BaseExtension
             $this->path = $this->extensionPaths['branding'] . '/extensions/class-manager';
             $this->extensionPaths['home'] = $this->path;
             $this->app->match($this->path, array($this, 'classManagerLoad'));
-            $this->addMenuOption(__('Manage Classes'), $this->app['paths']['bolt'] . 'extensions/class-manager', "icon-group");
+            $this->addMenuOption('Manage Classes', $this->app['paths']['bolt'] . 'extensions/class-manager', "icon-group");
         }
         /**
          * Add the clickable links for this page
