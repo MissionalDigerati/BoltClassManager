@@ -21,6 +21,17 @@ th.sortable:hover i {
         display: none !important;
     }
 
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+    th, td {
+        padding: 5px;
+    }
+
     table td:last-child, table th:last-child
     {
         display: none !important;
