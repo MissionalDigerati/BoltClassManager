@@ -26,6 +26,10 @@ th.sortable:hover i {
         display: none !important;
     }
 
+    #navpage-wrapper, #navpage-primary, #navpage-secondary, #bolt-footer {
+        display: none !important;
+    }
+
     th.sortable {
         color: #888 !important;
     }
