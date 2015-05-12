@@ -302,11 +302,11 @@ class Extension extends \Bolt\BaseExtension
      **/
     private function injectAssets($html)
     {
-        $urlbase = $this->app['paths']['app'];
+        $urlbase = $this->app['paths']['extensions'] . 'local/missionaldigerati/boltclassmanager/';
 
-        $assets = '<link rel="stylesheet" href="{urlbase}/extensions/ClassManager/assets/class_manager_styles.css">';
-        $assets .= '<script src="{urlbase}/extensions/ClassManager/assets/stupidtable.min.js"></script>';
-        $assets .= '<script src="{urlbase}/extensions/ClassManager/assets/class_manager_scripts.js"></script>';
+        $assets = '<link rel="stylesheet" href="{urlbase}assets/class_manager_styles.css">';
+        $assets .= '<script src="{urlbase}assets/stupidtable.min.js"></script>';
+        $assets .= '<script src="{urlbase}assets/class_manager_scripts.js"></script>';
 
         $assets = preg_replace('~\{urlbase\}~', $urlbase, $assets);
 
