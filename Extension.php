@@ -196,6 +196,7 @@ class Extension extends \Bolt\BaseExtension
     public function classManagerLoadSignInSheet($class_slug = '', $id = null)
     {
         $id = (int) $id;
+        $view = $this->getViewTemplate($class_slug);
         $table = $this->getClassTable($class_slug);
         $deleteSuccess = $this->app['request']->get('delete_success');
         
@@ -208,11 +209,16 @@ class Extension extends \Bolt\BaseExtension
 
         $classRecord = $this->app['storage']->getContent('upcoming_classes', array('id' => $id, 'returnsingle' => true));
 
-        $body = $this->app['render']->render("@ClassManager/sign_in.twig",
+        $body = $this->app['render']->render("@ClassManager/$view",
             array(
                 'students'              =>  $students,
                 'class_record'          =>  $classRecord,
-                'training_type_slug'    =>  $class_slug
+                'training_type_slug'    =>  $class_slug,
+                'class_id'              =>  $id,
+                'is_sign_in'            =>  true,
+                'delete_success'        =>  $deleteSuccess,
+                'remove_student_path'   =>  $this->extensionPaths['remove_student'],
+                'home_path'             =>  $this->extensionPaths['home']
             )
         );
 

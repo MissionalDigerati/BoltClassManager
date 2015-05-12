@@ -1,11 +1,7 @@
-{% if is_sign_in %}
+{% extends "_base/_page-nav.twig" %}
 
-{% else %}
-    {% extends "_base/_page-nav.twig" %}
-
-    {% block page_title __('Class Manager') %}
-    {% block page_nav 'Settings/Extensions' %}
-{% endif %}
+{% block page_title __('Class Manager') %}
+{% block page_nav 'Settings/Extensions' %}
 
 {% block page_main %}
     {% if is_sign_in %}
