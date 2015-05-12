@@ -69,7 +69,7 @@
 
                     {% if student.spouse|lower == 'yes' %}
                         <tr>
-                            <td>{{student.spouse_name}}</td>
+                            <td>{{student.spouse_name}}<br><em>Spouse of {{student.name}}</em></td>
                             <td>{{student.email}}</td>
                             {% if is_sign_in %}
                                 <td></td>
@@ -78,8 +78,8 @@
                                 <td>{{student.spouse_experience_computers}}</td>
                                 <td>{{student.spouse_experience_smart_phones}}</td>
                                 <td>{{student.timestamp|date("M d, Y @ g:i a")}}</td>
+                                <td></td>
                             {% endif %}
-                            <td><em>Spouse of {{student.name}}</em></td>
                         </tr>
                     {% endif %}
                     
