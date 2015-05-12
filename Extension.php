@@ -98,7 +98,7 @@ class Extension extends \Bolt\BaseExtension
             $this->path = $this->extensionPaths['branding'] . '/extensions/class-manager';
             $this->extensionPaths['home'] = $this->path;
             $this->app->match($this->path, array($this, 'classManagerLoad'));
-            $this->addMenuOption(Trans::__('Class Manager'), $this->app['paths']['bolt'] . 'extensions/class-manager', "icon-group");
+            $this->addMenuOption(Trans::__('Class Manager'), $this->app['paths']['bolt'] . 'extensions/class-manager', "fa:users");
         }
         /**
          * Add the clickable links for this page
