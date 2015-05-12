@@ -32,11 +32,6 @@ th.sortable:hover i {
         padding: 5px;
     }
 
-    table td:last-child, table th:last-child
-    {
-        display: none !important;
-    }
-
     #navpage-primary, #navpage-secondary, #bolt-footer {
         display: none !important;
     }
